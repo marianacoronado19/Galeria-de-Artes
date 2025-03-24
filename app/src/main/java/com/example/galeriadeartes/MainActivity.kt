@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,14 +17,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,8 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -64,9 +57,9 @@ data class ObraDeArte(val imageRes: Int, val title: String, val author: String, 
 fun GaleriaApp(modifier: Modifier = Modifier // ajustar tamanho de tela
     .fillMaxSize()
     .wrapContentSize(Alignment.Center)
+    .padding(top = 25.dp)
 ) {
     var click by remember { mutableStateOf(1)}
-    val scrollState = rememberScrollState() // estado de scroll
     val obra = when(click){ // variável com when para quando click for determinado número
         1 -> ObraDeArte(
             R.drawable.mona_lisa,
@@ -119,22 +112,6 @@ fun GaleriaApp(modifier: Modifier = Modifier // ajustar tamanho de tela
             click--
         }
     }
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color(0xFF6750A4))
-            .height(50.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ){
-        Text(
-            text = "Galeria de Artes",
-            fontSize = 20.sp,
-            color = Color.White,
-        )
-    }
-    Spacer(modifier = Modifier.height(30.dp))
     Column( // Coluna principal, todos os elementos são organizados aqui dentro
         modifier = modifier
             .fillMaxWidth()
@@ -176,10 +153,10 @@ fun GaleriaApp(modifier: Modifier = Modifier // ajustar tamanho de tela
             horizontalArrangement = Arrangement.SpaceAround
         ){
             Button(onClick = { lastImage() }){
-                Text(text = "Voltar")
+                Text(text = stringResource(R.string.voltar))
             }
             Button(onClick = { nextImage() }) {
-                Text(text = "Próximo")
+                Text(text = stringResource(R.string.proximo))
             }
         }
     }
