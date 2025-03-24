@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Galeria De Artes</string>
+    <string name="mona_lisa">Mona Lisa</string>
+    <string name="leonardo_da_vinci">Leonardo da Vinci</string>
+    <string name="desc_mona_lisa">Mona Lisa de Leonardo da Vinci foi pintada entre 1503-1506 a Óleo sobre madeira de álamo.</string>
+    <string name="a_noite_estrelada">A Noite Estrelada</string>
+    <string name="vincent_van_gogh">Vincent van Gogh</string>
+    <string name="desc_noite_estrelada">A Noite Estrelada de Vincent Van Gogh foi pintada em 1889 em Óleo sobre tela.</string>
+    <string name="abaporu">Abaporu</string>
+    <string name="tarsila_do_amaral">Tarsila do Amaral</string>
+    <string name="desc_abaporu">O Abaporu de Tarsila do Amaral foi pintado em 1928 em Óleo sobre tela.</string>
+    <string name="criacao_de_adao">A Criação de Adão</string>
+    <string name="michelangelo_buonarroti">Michelangelo Buonarroti</string>
+    <string name="desc_criacao_de_adao">A Criação de Adão de Michelangelo foi pintada no teto da Capela Sistina, Roma entre 1508-1512.</string>
+    <string name="o_nascimento_de_venus">O Nascimento de Vênus</string>
 </resources>

@@ -19,7 +19,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -35,6 +37,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -63,37 +66,39 @@ fun GaleriaApp(modifier: Modifier = Modifier // ajustar tamanho de tela
     .wrapContentSize(Alignment.Center)
 ) {
     var click by remember { mutableStateOf(1)}
-    val obra = when(click){
+    val scrollState = rememberScrollState() // estado de scroll
+    val obra = when(click){ // variável com when para quando click for determinado número
         1 -> ObraDeArte(
             R.drawable.mona_lisa,
-            "Mona Lisa",
-            "Leonardo da Vinci",
+            stringResource(R.string.mona_lisa),
+            stringResource(R.string.leonardo_da_vinci),
             1506,
-            "Mona Lisa de Leonardo da Vinci foi pintada entre 1503-1506 a Óleo sobre madeira de álamo.")
+            stringResource(R.string.desc_mona_lisa)
+        )
         2 -> ObraDeArte(
             R.drawable.noite_estrelada,
-            "A Noite Estrelada",
-            "Vincent van Gogh",
+            stringResource(R.string.a_noite_estrelada),
+            stringResource(R.string.vincent_van_gogh),
             1889,
-            "A Noite Estrelada de Vincent Van Gogh foi pintada em 1889 em Óleo sobre tela."
+            stringResource(R.string.desc_noite_estrelada)
         )
         3 -> ObraDeArte(
             R.drawable.abaporu,
-            "Abaporu",
-            "Tarsila do Amaral",
+            stringResource(R.string.abaporu),
+            stringResource(R.string.tarsila_do_amaral),
             1928,
-            "O Abaporu de Tarsila do Amaral foi pintado em 1928 em Óleo sobre tela."
+            stringResource(R.string.desc_abaporu)
         )
         4 -> ObraDeArte(
             R.drawable.criacao_de_adao,
-            "A Criação de Adão",
-            "Michelangelo Buonarroti",
+            stringResource(R.string.criacao_de_adao),
+            stringResource(R.string.michelangelo_buonarroti),
             1512,
-            "A Criação de Adão de Michelangelo foi pintada no teto da Capela Sistina, Roma entre 1508-1512."
+            stringResource(R.string.desc_criacao_de_adao)
         )
         else -> ObraDeArte(
             R.drawable.nascimento_de_venus,
-            "O Nascimento de Vênus",
+            stringResource(R.string.o_nascimento_de_venus),
             "Sandro Botticelli",
             1483,
             "O Nascimento de Vênus de Sandro Botticelli foi pintado em 1483 em Têmpera sobre tela."
@@ -109,33 +114,34 @@ fun GaleriaApp(modifier: Modifier = Modifier // ajustar tamanho de tela
     }
     fun lastImage(){
         if(click <= 1) {
-            click = 0
+            click = 5
         } else {
             click--
         }
     }
 
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFF6750A4))
+            .height(50.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ){
+        Text(
+            text = "Galeria de Artes",
+            fontSize = 20.sp,
+            color = Color.White,
+        )
+    }
+    Spacer(modifier = Modifier.height(30.dp))
     Column( // Coluna principal, todos os elementos são organizados aqui dentro
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color(0xFF6750A4))
-                .height(50.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ){
-            Text(
-                text = "Galeria de Artes",
-                fontSize = 20.sp,
-                color = Color.White,
-            )
-        }
-
         Image(
             painter = painterResource(obra.imageRes),
             contentDescription = obra.description,
