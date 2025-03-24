@@ -92,13 +92,14 @@ fun GaleriaApp(modifier: Modifier = Modifier // ajustar tamanho de tela
         else -> ObraDeArte(
             R.drawable.nascimento_de_venus,
             stringResource(R.string.o_nascimento_de_venus),
-            "Sandro Botticelli",
+            stringResource(R.string.sandro_botticelli),
             1483,
-            "O Nascimento de Vênus de Sandro Botticelli foi pintado em 1483 em Têmpera sobre tela."
+            stringResource(R.string.desc_nascimento_de_venus)
         )
     }
 
-    fun nextImage(){
+    fun nextImage(){ //função para passar pra próxima imagem, se o número for maior que 5, volta
+        // para 1
         if (click >= 5){
             click = 1
         } else {
@@ -162,8 +163,6 @@ fun GaleriaApp(modifier: Modifier = Modifier // ajustar tamanho de tela
     }
 
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
